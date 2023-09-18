@@ -12,36 +12,19 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const { toasts,
-          handleDismiss,
-          handleAddToast,
+          createToast,
         } = React.useContext(ToastContext);
   const [message, setMessage] = React.useState('');
-  // const [toasts, setToasts] = React.useState([]);
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
 
-  // function handleDismiss(id) {
-  //   console.log(id);
-  //   const nextToasts = toasts.filter((toast) => {
-  //     return toast.id !== id;
-  //   });
+  function handleAddToast(event) {
+    event.preventDefault();
 
-  //   setToasts(nextToasts);
-  // }
+    createToast(message, variant);
 
-  // function handleAddToast(event) {
-  //   event.preventDefault();
-
-  //   const newToast = {
-  //     id: crypto.randomUUID(),
-  //     message: message,
-  //     variant: variant,
-  //   };
-  //   const nextToasts = [...toasts, newToast];
-  //   setToasts(nextToasts);
-
-  //   setMessage('');
-  //   setVariant(VARIANT_OPTIONS[0]);
-  // }
+    setMessage('');
+    setVariant(VARIANT_OPTIONS[0]);
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -52,7 +35,6 @@ function ToastPlayground() {
 
       <ToastShelf
         toasts={toasts}
-        handleDismiss={handleDismiss}
       />
 
       <form 
