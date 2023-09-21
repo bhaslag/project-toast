@@ -1,6 +1,5 @@
 import React from 'react';
 export const ToastContext = React.createContext();
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
